@@ -2,10 +2,11 @@
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
+using Business.ValidationRules;
 
 namespace Business.Concrete
 {
-    public class CarManager:ICarService
+    public class CarManager : ICarService
     {
         private readonly ICarDal _carDal;
 
@@ -19,6 +20,16 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
+        public List<Car> GetCarsByBrandId(int brandId)
+        {
+            return _carDal.GetAll(c => c.BrandId == brandId);
+        }
+
+        public List<Car> GetCarsByColorId(int colorId)
+        {
+            return _carDal.GetAll(c => c.ColorId == colorId);
+        }
+
         public Car GetById(int carId)
         {
             return _carDal.GetById(carId);
@@ -26,7 +37,10 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            _carDal.Add(car);
+            if (CarValidator.IsCarValid(car))
+            {
+                _carDal.Add(car);
+            }
         }
 
         public void Update(Car car)
