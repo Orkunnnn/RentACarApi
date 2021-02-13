@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DataAccess.Concrete.InMemory
 {
-    public class InMemoryCarDal:ICarDal
+    public class InMemoryCarDal : ICarDal
     {
         private readonly List<Car> _cars = new List<Car>
         {
@@ -61,11 +61,11 @@ namespace DataAccess.Concrete.InMemory
         {
             var carToUpdate = _cars.SingleOrDefault(c => c.CarId == car.CarId);
             if (carToUpdate == null) return;
-            car.Description = carToUpdate.Description;
-            car.BrandId = carToUpdate.BrandId;
-            car.ColorId = carToUpdate.ColorId;
-            car.DailyPrice = carToUpdate.DailyPrice;
-            car.ModelYear = carToUpdate.ModelYear;
+            carToUpdate.Description = car.Description;
+            carToUpdate.BrandId = car.BrandId;
+            carToUpdate.ColorId = car.ColorId;
+            carToUpdate.DailyPrice = car.DailyPrice;
+            carToUpdate.ModelYear = car.ModelYear;
         }
 
         public void Delete(Car car)
