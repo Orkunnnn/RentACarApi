@@ -8,6 +8,7 @@ namespace Business.Abstract
         List<Car> GetAll();
         List<Car> GetCarsByBrandId(int brandId);
         List<Car> GetCarsByColorId(int colorId);
+        List<CarDetailsDto> GetCarDetails(); 
         Car GetById(int carId);
         void Add(Car car);
         void Update(Car car);
