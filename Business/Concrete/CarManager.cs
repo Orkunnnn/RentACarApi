@@ -32,7 +32,7 @@ namespace Business.Concrete
 
         public Car GetById(int carId)
         {
-            return _carDal.GetById(carId);
+            return _carDal.Get(c => c.CarId == carId);
         }
 
         public void Add(Car car)
