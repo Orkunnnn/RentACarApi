@@ -29,7 +29,7 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            if (!RentalValidator.IsCarAvailable(rental)) return new ErrorResult(Messages.CarNotAvailable);
+            if (RentalValidator.IsCarAvailable(_rentalDal, rental)) return new ErrorResult(Messages.CarNotAvailable);
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }

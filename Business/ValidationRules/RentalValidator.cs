@@ -1,12 +1,14 @@
-﻿using Entities.Concrete;
+﻿using DataAccess.Abstract;
+using Entities.Concrete;
 
 namespace Business.ValidationRules
 {
     public static class RentalValidator
     {
-        public static bool IsCarAvailable(Rental rental)
+        public static bool IsCarAvailable(IRentalDal rentalDal, Rental rental)
         {
-            return rental.ReturnDate != null;
+            var rentdalCount = rentalDal.GetRentalDetails(r => r.CarId == rental.CarId).Count;
+            return rental.ReturnDate == null && rentalDal.GetRentalDetails(r => r.CarId == rental.CarId).Count > 0;
         }
     }
 }

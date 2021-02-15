@@ -1,6 +1,6 @@
 ﻿using Core.Entities;
 
-namespace Entities.Concrete
+namespace Entities.Concrete.DTOs
 {
     public class CarDetailsDto : IDto
     {
