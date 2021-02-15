@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using System.Linq;
+using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace Business.ValidationRules
@@ -7,8 +8,7 @@ namespace Business.ValidationRules
     {
         public static bool IsCarAvailable(IRentalDal rentalDal, Rental rental)
         {
-            var rentdalCount = rentalDal.GetRentalDetails(r => r.CarId == rental.CarId).Count;
-            return rental.ReturnDate == null && rentalDal.GetRentalDetails(r => r.CarId == rental.CarId).Count > 0;
+            return rentalDal.GetRentalDetails(r => r.CarId == rental.CarId).All(item => item.ReturnDate != null);
         }
     }
 }
