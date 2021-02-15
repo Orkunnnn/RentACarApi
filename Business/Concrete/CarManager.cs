@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Business.ValidationRules;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -43,22 +44,22 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (!CarValidator.IsCarValid(car)) return new ErrorResult("Araba eklenemedi.");
+            if (!CarValidator.IsCarValid(car)) return new ErrorResult(Messages.CarInvalid);
             _carDal.Add(car);
-            return new SuccessResult("Araba başarıyla eklendi.");
+            return new SuccessResult(Messages.CarAdded);
 
         }
 
         public IResult Update(Car car)
         {
             _carDal.Update(car);
-            return new SuccessResult("Araba başarıyla güncellendi.");
+            return new SuccessResult(Messages.CarUpdated);
         }
 
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            return new SuccessResult("Araba başarıyla silindi.");
+            return new SuccessResult(Messages.CarDeleted);
         }
     }
 }
