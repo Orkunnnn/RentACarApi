@@ -22,7 +22,7 @@ namespace ConsoleUI
             var rentalService = new RentalManager(new EfRentalDal());
             var result = rentalService.Add(new Rental
             {
-                CarId = 2,
+                CarId = 3,
                 CustomerId = 2,
                 RentDate = DateTime.Now
             });
