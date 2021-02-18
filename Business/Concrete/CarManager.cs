@@ -5,6 +5,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
+using Core.Aspects.Autofac.Validation;
 using Entities.Concrete.DTOs;
 
 namespace Business.Concrete
@@ -43,14 +44,15 @@ namespace Business.Concrete
             return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId));
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            if (!CarValidator.IsCarValid(car)) return new ErrorResult(Messages.CarInvalid);
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
 
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
             _carDal.Update(car);

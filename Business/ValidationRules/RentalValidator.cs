@@ -1,14 +1,23 @@
-﻿using System.Linq;
-using DataAccess.Abstract;
+﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using FluentValidation;
+using System.Linq;
 
 namespace Business.ValidationRules
 {
-    public static class RentalValidator
+    public class RentalValidator : AbstractValidator<Rental>
     {
-        public static bool IsCarAvailable(IRentalDal rentalDal, Rental rental)
+        private readonly IRentalDal _rentalDal;
+        public RentalValidator(IRentalDal rentalDal)
         {
-            return rentalDal.GetRentalDetails(r => r.CarId == rental.CarId).All(item => item.ReturnDate != null);
+            _rentalDal = rentalDal;
+            RuleFor(r => r).Must(CarAvailable).WithMessage("Araba kiralanamaz.");
         }
+
+        public bool CarAvailable(Rental rental)
+        {
+            return _rentalDal.GetRentalDetails(r => r.CarId == rental.CarId).All(item => item.ReturnDate != null);
+        }
+
     }
 }

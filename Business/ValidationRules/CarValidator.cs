@@ -1,13 +1,14 @@
-﻿using System;
-using Entities.Concrete;
+﻿using Entities.Concrete;
+using FluentValidation;
 
 namespace Business.ValidationRules
 {
-    public static class CarValidator
+    public class CarValidator : AbstractValidator<Car>
     {
-        public static bool IsCarValid(Car car)
+        public CarValidator()
         {
-            return car.Description.Length >= 2 && car.DailyPrice >= 0;
+            RuleFor(c => c.Description).MinimumLength(2);
+            RuleFor(c => c.DailyPrice).GreaterThan(0);
         }
     }
 }

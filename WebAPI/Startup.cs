@@ -23,9 +23,6 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<ICarService, CarManager>().AddSingleton<IBrandService, BrandManager>()
-                .AddSingleton<IColorService, ColorManager>().AddSingleton<ICustomerService, CustomerManager>()
-                .AddSingleton<IRentalService, RentalManager>().AddSingleton<IUserService, UserManager>().AddSingleton<ICarDal,EfCarDal>().AddSingleton<IColorDal,EfColorDal>().AddSingleton<IBrandDal,EfBrandDal>().AddSingleton<IUserDal,EfUserDal>().AddSingleton<ICustomerDal,EfCustomerDal>().AddSingleton<IRentalDal,EfRentalDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

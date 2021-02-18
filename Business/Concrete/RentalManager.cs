@@ -5,6 +5,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
 using Business.ValidationRules;
+using Core.Aspects.Autofac.Validation;
 
 namespace Business.Concrete
 {
@@ -27,9 +28,9 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == rentalId));
         }
 
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            if (!RentalValidator.IsCarAvailable(_rentalDal, rental)) return new ErrorResult(Messages.CarNotAvailable);
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }
