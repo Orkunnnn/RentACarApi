@@ -22,12 +22,13 @@
         public static string CarUpdated = "Araba başarıyla güncellendi.";
         public static string CarDeleted = "Araba başarıyla silindi.";
         public static string CarInvalid = "Araba açıklaması en az 2 karakter içermelidir ve günlük fiyat 0'ın altında olmamalıdır.";
+        public static string CarNotAvailable = "Araba şu an kiralanamıyor.";
 
         public static string RentalAdded = "Araba kiralama işlemi başarıyla tamamlandı.";
         public static string RentalUpdated = "Araba kiralama işlemi başarıyla güncellendi.";
         public static string RentalDeleted = "Araba kiralama işlemi başarıyla silindi.";
 
-
-        public static string CarNotAvailable = "Araba şu an kiralanamıyor.";
+        public static string CantAddMoreThanFiveImage = "Bir araba için 5'ten fazla resim eklenemez.";
+        public static string CarImageDoesNotExists = "Araç için herhangi bir resim bulunmuyor.";
     }
 }
