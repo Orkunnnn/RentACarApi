@@ -1,7 +1,7 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
-using System.Collections.Generic;
 using Entities.Concrete.DTOs;
+using System.Collections.Generic;
 
 namespace Business.Abstract
 {
@@ -15,5 +15,6 @@ namespace Business.Abstract
         IResult Add(Car car);
         IResult Update(Car car);
         IResult Delete(Car car);
+        IResult AddTransactionalTest(Car car);
     }
 }

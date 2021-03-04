@@ -4,8 +4,10 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
+using System.Linq;
 using Business.ValidationRules;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 
 namespace Business.Concrete
 {
@@ -31,6 +33,11 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
+            var result = BusinessRule.Run(CheckIfCarAvailable(rental.CarId));
+            if (result != null)
+            {
+                return result;
+            }
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }
@@ -45,6 +52,16 @@ namespace Business.Concrete
         {
             _rentalDal.Delete(rental);
             return new SuccessResult(Messages.RentalDeleted);
+        }
+
+        private IResult CheckIfCarAvailable(int carId)
+        {
+            if (_rentalDal.GetRentalDetails(r => r.CarId == carId).All(item => item.ReturnDate != null))
+            {
+                return new SuccessResult();
+            }
+
+            return new ErrorResult(Messages.CarNotAvailable);
         }
     }
 }
