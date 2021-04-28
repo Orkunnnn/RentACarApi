@@ -19,6 +19,7 @@ namespace Business.Concrete
 
         public CarImageManager(ICarImageDal imageDal)
         {
+
             _imageDal = imageDal;
         }
 

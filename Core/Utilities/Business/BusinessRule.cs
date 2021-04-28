@@ -11,6 +11,7 @@ namespace Core.Utilities.Business
                 if (!result.Success)
                 {
                     return result;
+
                 }
             }
             return null;

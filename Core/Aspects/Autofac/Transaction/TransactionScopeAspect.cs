@@ -18,7 +18,6 @@ namespace Core.Aspects.Autofac.Transaction
             catch
             {
                 transactionScope.Dispose();
-                throw;
             }
         }
     }

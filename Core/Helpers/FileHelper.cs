@@ -47,6 +47,7 @@ namespace Core.Helpers
 
             File.Delete(sourcePath);
             return new SuccessResult();
+
         }
     }
 }

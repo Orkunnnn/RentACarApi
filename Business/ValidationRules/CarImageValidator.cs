@@ -8,6 +8,7 @@ namespace Business.ValidationRules
         public CarImageValidator()
         {
             RuleFor(c=>c.CarId).NotNull();
+
         }
     }
 }
